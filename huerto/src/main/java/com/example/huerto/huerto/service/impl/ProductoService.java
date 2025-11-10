@@ -39,6 +39,11 @@ public class ProductoService implements IProductoService {
             producto.setDisponible(detalles.getDisponible());
             producto.setCategoria(detalles.getCategoria());
             producto.setImagen(detalles.getImagen());
+            
+            producto.setImagenes(detalles.getImagenes()); 
+
+        
+            
             return productoRepository.save(producto);
         }).orElse(null);
     }
