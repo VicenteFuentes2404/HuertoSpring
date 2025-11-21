@@ -10,6 +10,7 @@ public interface IProductoService {
     List<Producto> listarTodos();
     Optional<Producto> obtenerPorId(Long id);
     Producto guardar(Producto producto);
-    Producto actualizar(Long id, Producto producto);
+    Optional<Producto> actualizar(Long id, Producto producto);
+
     void eliminar(Long id);
 }
