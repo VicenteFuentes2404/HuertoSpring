@@ -22,16 +22,20 @@ public class ProductoService implements IProductoService {
 
     @Override
     public Optional<Producto> obtenerPorId(Long id) {
+        if (id == null) throw new IllegalArgumentException("El id no puede ser null");
         return productoRepository.findById(id);
     }
 
     @Override
     public Producto guardar(Producto producto) {
+        if (producto == null) throw new IllegalArgumentException("El producto no puede ser null");
         return productoRepository.save(producto);
     }
 
     @Override
-    public Producto actualizar(Long id, Producto detalles) {
+    public Optional<Producto> actualizar(Long id, Producto detalles) {
+        if (id == null) throw new IllegalArgumentException("El id no puede ser null");
+        if (detalles == null) throw new IllegalArgumentException("El producto no puede ser null");
         return productoRepository.findById(id).map(producto -> {
             producto.setNombre(detalles.getNombre());
             producto.setPrecio(detalles.getPrecio());
@@ -39,17 +43,14 @@ public class ProductoService implements IProductoService {
             producto.setDisponible(detalles.getDisponible());
             producto.setCategoria(detalles.getCategoria());
             producto.setImagen(detalles.getImagen());
-            
-            producto.setImagenes(detalles.getImagenes()); 
-
-        
-            
+            producto.setImagenes(detalles.getImagenes());
             return productoRepository.save(producto);
-        }).orElse(null);
+        });
     }
 
     @Override
     public void eliminar(Long id) {
+        if (id == null) throw new IllegalArgumentException("El id no puede ser null");
         if (productoRepository.existsById(id)) {
             productoRepository.deleteById(id);
         }

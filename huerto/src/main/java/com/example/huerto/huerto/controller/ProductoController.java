@@ -36,12 +36,13 @@ public class ProductoController {
         return productoService.guardar(producto);
     }
 
-    // ACTUALIZAR
-    @PutMapping("/{id}")
-    public ResponseEntity<Producto> actualizar(@PathVariable Long id, @RequestBody Producto producto) {
-        Producto actualizado = productoService.actualizar(id, producto);
-        return (actualizado != null) ? ResponseEntity.ok(actualizado) : ResponseEntity.notFound().build();
-    }
+   // ACTUALIZAR
+@PutMapping("/{id}")
+public ResponseEntity<Producto> actualizar(@PathVariable Long id, @RequestBody Producto producto) {
+    return productoService.actualizar(id, producto)
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> ResponseEntity.notFound().build());
+}
 
     // ELIMINAR
     @DeleteMapping("/{id}")
