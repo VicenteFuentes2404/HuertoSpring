@@ -1,0 +1,13 @@
+http://localhost:8090/api/productos
+
+
+
+{
+  "nombre": "Tomate Cherry",
+  "precio": 2500,
+  "descripcion": "Tomate cherry orgánico, recién cosechado.",
+  "disponible": true,
+  "categoria": "Vegetales",
+  "imagen": null,
+  "imagenes": []
+}
